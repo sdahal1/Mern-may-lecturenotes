@@ -24,10 +24,47 @@ const combine = (arr1, arr2)=>{
         j++
     }
 
-    console.log(result)
+    // console.log(result)
     return result
 
 }
 
 
-combine([4,6,7], [1,3,6,9])
+function mergeSort(arr){
+    if(arr.length<=1){
+        // console.log(arr)
+        return arr
+    }else{
+        //breaking down into half until you have single element arrays, then recursively merging those results using the combine function above
+        let mid = Math.floor(arr.length/2)
+        // console.log(mid)
+
+        let lefthalf = arr.slice(0,mid)
+        
+        
+        let righthalf = arr.slice(mid)
+        // console.log("left half is this: ", lefthalf)
+        // console.log("right half is this: ", righthalf)
+        // console.log("mergesort with left half: ", mergeSort(lefthalf))
+        // console.log("mergesort with right half: ",mergeSort(righthalf))
+        return combine(mergeSort(lefthalf), mergeSort(righthalf))
+    }
+
+
+}
+
+
+console.log(mergeSort([7,4,8,5,3,2,9]))
+
+
+
+// combine([4,6,7], [1,3,6,9])
+
+
+
+// var fruits = ["Banana", "Orange", "Potato", "Lemon", "Apple", "Mango"];
+// var lefthalf = fruits.slice(0,3);
+// var righthalf = fruits.slice(3,fruits.length)
+
+// console.log(lefthalf)
+// console.log(righthalf)
