@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+// import styles from './MyButtonComponent.module.css';
+import styles from './Form.module.css';
 
 
 
@@ -52,9 +54,28 @@ const Form = () => {
 
     }
 
+    const deleteStudent = (e, indexnumbaaa) =>{
+        console.log("deleting this student", indexnumbaaa)
+        // let students= [...allStudents]
+        // students.splice(indexnumbaaa,1)
+        // setAllStudents(students)
+
+        // var fruits = ["Banana", "Orange", "Apple", "Mango", "Kiwi"];
+        // let result = fruits.splice(2,1);
+
+        // console.log(fruits)
+
+        let result = allStudents.filter((student, idx)=>{
+            return idx !=indexnumbaaa
+        } )
+        setAllStudents(result)
+
+    }
+
     return (
         <div className="container">
-            <div>
+            <div className= {styles.newstudent}>
+                <h3 id = {styles.title}>Add a student below</h3>
                 <form onSubmit= {submitHandler}>
                     <div className="form-group">
                         <label htmlFor="">First Name</label>
@@ -92,8 +113,8 @@ const Form = () => {
             </div>
             <div>
                 {
-                  allStudents.map(student=>{
-                      return <div className="card" style = {{backgroundColor: student.favColor}}>
+                  allStudents.map((student,idx)=>{
+                      return <div key={idx} className={`card ${styles.studentCard} d-flex justify-content-center`} style = {{backgroundColor: student.favColor, width: student.numBelts>2? "100%":"50%" }}>
                       <img className="" src={student.proPic} alt="Card image cap" height= "200" width = "200"/>
                       <div className="card-body">
                         <h4 className="card-title">{student.fname}</h4>
@@ -102,7 +123,10 @@ const Form = () => {
                         </p>
                         <p>Favorite color: {student.favColor}</p>
                         <p>Number of belts: {student.numBelts}</p>
+                        <p>Index number: {idx}</p>
                       </div>
+                      <button onClick={e=> deleteStudent(e, idx)}>Remove</button>
+                      {/* return <button onClick={ (e) => onClickHandler(e, item) }>{ item }</button> */}
                     </div>
                   })  
                 }
