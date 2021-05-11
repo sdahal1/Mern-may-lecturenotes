@@ -4,8 +4,9 @@ import styles from './Form.module.css';
 
 
 
-const Form = () => {
+const Form = (props) => {
 
+    const {allStudents, setAllStudents} = props;
     //state variable to store the form information
     const [forminfo, setFormInfo] = useState({
         fname:"",
@@ -17,7 +18,8 @@ const Form = () => {
     })
 
     //state variable to store all the SUBMITTED form information
-    const [allStudents, setAllStudents] = useState([])
+
+    // const [allStudents, setAllStudents] = useState([])
 
 
 
@@ -54,23 +56,7 @@ const Form = () => {
 
     }
 
-    const deleteStudent = (e, indexnumbaaa) =>{
-        console.log("deleting this student", indexnumbaaa)
-        // let students= [...allStudents]
-        // students.splice(indexnumbaaa,1)
-        // setAllStudents(students)
-
-        // var fruits = ["Banana", "Orange", "Apple", "Mango", "Kiwi"];
-        // let result = fruits.splice(2,1);
-
-        // console.log(fruits)
-
-        let result = allStudents.filter((student, idx)=>{
-            return idx !=indexnumbaaa
-        } )
-        setAllStudents(result)
-
-    }
+    
 
     return (
         <div className="container">
@@ -111,7 +97,7 @@ const Form = () => {
                 <hr/><hr/>
 
             </div>
-            <div>
+            {/* <div>
                 {
                   allStudents.map((student,idx)=>{
                       return <div key={idx} className={`card ${styles.studentCard} d-flex justify-content-center`} style = {{backgroundColor: student.favColor, width: student.numBelts>2? "100%":"50%" }}>
@@ -126,11 +112,11 @@ const Form = () => {
                         <p>Index number: {idx}</p>
                       </div>
                       <button onClick={e=> deleteStudent(e, idx)}>Remove</button>
-                      {/* return <button onClick={ (e) => onClickHandler(e, item) }>{ item }</button> */}
+                      
                     </div>
                   })  
                 }
-            </div>
+            </div> */}
         </div>
     );
 };
