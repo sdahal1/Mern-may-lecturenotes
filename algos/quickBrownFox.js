@@ -5,11 +5,6 @@ let words = [
 
 ]
 
-words[0][1]
-
-
-// ["quick brown fox", "quick brown dog", "quick red fox" etc;]
-
 
 
 function allcombs(words){
@@ -28,7 +23,6 @@ function allcombs(words){
     helper("", 0)
     return result
 }
-
 
 console.log(allcombs(words))//["quick brown fox", "quick brown dog", "quick red fox" etc;]
 
