@@ -1,0 +1,111 @@
+Create a database called 'actors_db'.
+
+use actors_db
+
+
+
+Create actors collection.
+
+db.createCollection("actors")
+
+
+
+
+Each document you insert into this collection should have the following format: ({name: STRING, home_state: STRING, num_oscars: NUMBER, birthday: {month: NUMBER, day: NUMBER, year: NUMBER}})
+
+
+Create 3 actors with the appropriate info.
+
+db.actors.insert({name: "Morgan Freeman",home_state:"Tennessee", num_oscars:4, birthday: {month: 8, day: 19, year: 1937} })
+db.actors.insert({name: "Clint Eastwood",home_state:"Los Angeles", num_oscars:3, birthday: {month: 5, day: 31, year: 1978} })
+db.actors.insert({name: "Nick Cage",home_state:"Florida", num_oscars:14, birthday: {month: 10, day: 19, year: 1955} })
+
+
+
+
+Get all actors.
+
+db.actors.find({})
+
+
+Retrieve all actors who are from Tennessee or Florida.
+
+
+db.actors.find({
+  $or: [
+    {
+      home_state: "Tennessee"
+    },
+    {
+      home_state: "Florida"
+    }
+  ]
+})
+
+
+Get all actors whose num_oscars is greater than 3
+
+db.actors.find({num_oscars: {$gt: 3}})
+
+
+
+Get all actors whose num_oscars is less than or equal to 5
+
+db.actors.find({num_oscars: {$lte: 5}})
+
+
+
+Get all actors whose num_oscars is between 1 and 5 (inclusive)
+
+db.actors.find({ num_oscars : { $gte :  1, $lte : 5}});
+
+
+Add a field to each actor collection called 'interests' that is an ARRAY. It should contain the following entries: 'travel', 'rehearse', 'tweet'. Do this in ONE operation.
+
+
+db.actors.updateMany({}, {$set: {interests: ["travel", "rehearse", "tweet"]}})
+
+
+
+Add some unique interests for each particular actor into each of their interest arrays.
+
+db.actors.update({_id: ObjectId("609ea3f3e3e6e14666e80d73")}, {$push: {interests: "Fishing"}})
+
+
+
+Add the interest 'relaxing' into someone's interest array.
+
+db.actors.update({_id: ObjectId("609ea3f3e3e6e14666e80d73")}, {$push: {interests: "relaxing"}})
+
+
+
+Remove the 'relaxing' interest you just added.
+
+db.actors.update({_id: ObjectId("609ea3f3e3e6e14666e80d73")}, {$pop: {interests: 1}})
+  
+
+
+Remove all actors who are from California.
+
+db.actors.remove( {home_state:"Los Angeles" } )
+
+
+Remove a actor by name.
+
+
+Remove a actor whose num_oscars is greater than 5 (JUST ONE)
+
+
+Add a field to each actor collection called 'number_of_movies' and set it to 0.
+
+
+Increment this field by 1 for all actors in New York.
+
+
+Rename the 'number_of_movies' field to 'num_movies'
+
+
+Remove the 'num_oscars' field.
+
+
+Add a 'updated_on' field, and set the value as the current date
