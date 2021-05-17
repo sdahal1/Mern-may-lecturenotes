@@ -10,7 +10,8 @@ const QuoteSchema = new mongoose.Schema({
     },
 
     author: {
-        type: String
+        type: String,
+        required: [true, "Author is required"]
     },
 
     quotedOn: {

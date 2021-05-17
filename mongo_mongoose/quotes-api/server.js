@@ -5,7 +5,9 @@ const cors = require("cors")
 
 app.use(express.json()); //allows us to use json
 app.use( express.urlencoded({ extended: true }));
+app.use(cors())
 
+//^^^^ keep those defined at the top before the requires for config and routes
 
 
 

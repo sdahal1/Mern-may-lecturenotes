@@ -8,7 +8,6 @@ module.exports = app =>{
     app.get("/api/quotes/:id", QuoteController.findOneQuote)
     app.put("/api/quotes/update/:id", QuoteController.updateOneQuote)
     app.delete("/api/quotes/delete/:id", QuoteController.deleteQuote)
-
 }
 
 
