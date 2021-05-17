@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import {Link} from "@reach/router";
 
 const AllQuotes = () => {
     const [quotes, setQuotes] = useState([])
-
 
     useEffect(()=>{
         axios.get("http://localhost:8000/api/quotes")
@@ -19,7 +19,8 @@ const AllQuotes = () => {
         })
 
     }, [])
-    
+
+
 
 
     return (
@@ -33,7 +34,8 @@ const AllQuotes = () => {
                       <p className="card-text">
                         {quote.content}
                       </p>
-                      {/* <a href="#!" className="card-link">Card link</a> */}
+                      {/* <a href={`/quotes/${quote._id}`} className="card-link">View Details</a> */}
+                      <Link to = {`/quotes/${quote._id}`} className="card-link" >View Details</Link>
                       {/* <a href="#!" className="card-link">Another link</a> */}
                     </div>
                   </div>
