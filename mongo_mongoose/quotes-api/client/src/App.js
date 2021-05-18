@@ -3,6 +3,7 @@ import './App.css';
 import AllQuotes from './components/AllQuotes';
 import QuoteDetails from './components/QuoteDetails';
 import Create from './components/Create';
+import Edit from './components/Edit';
 import {Router, Link} from "@reach/router";
 
 function App() {
@@ -15,8 +16,8 @@ function App() {
 
         <AllQuotes path= "/"></AllQuotes>
         <Create path="/quotes/new"></Create>
-        
         <QuoteDetails path= "/quotes/:id"></QuoteDetails>
+        <Edit path="/quotes/edit/:id"></Edit>
 
       </Router>
     </div>

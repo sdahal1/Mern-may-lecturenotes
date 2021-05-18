@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import {Link} from "@reach/router";
+import {Link, navigate} from "@reach/router";
 
 const AllQuotes = () => {
     const [quotes, setQuotes] = useState([])
+    // const [deleteClicked, setdeleteClicked] = useState(0)
+    const [deleteClicked, setdeleteClicked] = useState(false)
+
 
     useEffect(()=>{
         axios.get("http://localhost:8000/api/quotes")
@@ -18,7 +21,24 @@ const AllQuotes = () => {
             console.log(err)
         })
 
-    }, [])
+    }, [deleteClicked])
+
+    
+    const deleteQuoteClickHandler =(e, quoteId)=>{
+        axios.delete(`http://localhost:8000/api/quotes/delete/${quoteId}`)
+            .then(res=>{
+                console.log("***********")
+                console.log(res)
+                console.log("***********")
+                setdeleteClicked(!deleteClicked)
+                // navigate("/")
+
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+
+    }
 
 
 
@@ -36,7 +56,7 @@ const AllQuotes = () => {
                       </p>
                       {/* <a href={`/quotes/${quote._id}`} className="card-link">View Details</a> */}
                       <Link to = {`/quotes/${quote._id}`} className="card-link" >View Details</Link>
-                      {/* <a href="#!" className="card-link">Another link</a> */}
+                      <Link onClick= {(e)=>deleteQuoteClickHandler(e, quote._id )} to="#!" className="card-link text-danger">Delete</Link>
                     </div>
                   </div>
                 })
